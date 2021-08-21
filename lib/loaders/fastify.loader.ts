@@ -34,7 +34,8 @@ export class FastifyLoader extends AbstractLoader {
           root: clientPath,
           ...(options.serveStaticOptions || {}),
           wildcard: false,
-          prefix: options.serveRoot
+          prefix: options.serveRoot,
+          preCompressed: true
         });
 
         const renderPath =
@@ -50,7 +51,8 @@ export class FastifyLoader extends AbstractLoader {
         app.register(fastifyStatic, {
           root: clientPath,
           ...(options.serveStaticOptions || {}),
-          wildcard: false
+          wildcard: false,
+          preCompressed: true
         });
         app.get(options.renderPath, (req: any, res: any) => {
           const stream = fs.createReadStream(indexFilePath);
